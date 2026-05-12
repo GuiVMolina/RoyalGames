@@ -1,18 +1,11 @@
 #banner {
   padding: 40px 0;
   max-height: 90vh;
-  min-height: 840px;
-  background-image: linear-gradient(
-    color-mix(var(--roxo) 50%, var(--cinza-escuro) 100%),
-    var(--cinza-escuro)
-  );
+  min-height: 600px;
 }
 
 #catalogo {
-  padding: 40px 0;
   max-height: 100vh;
-  min-height: 640px;
-  background-color: var(--cinza-escuro);
 }
 
 #catalogo_title{
@@ -20,11 +13,6 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-}
-
-#catalogo_campo {
-  gap: 20px;
-  display: flex;
 }
 
 #catalogo_style {
@@ -38,7 +26,6 @@
   padding: 40px 0;
   max-height: 100vh;
   min-height: 640px;
-  background-color: var(--cinza-escuro);
 }
 
 #text_space {
@@ -52,5 +39,5 @@
 }
 
 #jogos_img {
-  height: 200px;
+  width: 40%;
 }

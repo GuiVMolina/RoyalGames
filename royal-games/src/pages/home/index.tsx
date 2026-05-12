@@ -2,7 +2,6 @@ import Footer from "@/components/footer/footer";
 import Header from "@/components/header/header";
 import styles from "./home.module.css";
 import ListaCard from "@/components/lista-card/lista-card";
-import Link from "next/link";
 
 const Home = () => {
   return (
@@ -32,23 +31,6 @@ const Home = () => {
               <div id={styles.catalogo_title}>
                 <h2>Catálogo de jogos</h2>
                 <hr className="line" />
-              </div>
-              <div id={styles.catalogo_campo}>
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="Pesquisa seu jogo"
-                />
-                <select className="select" id="">
-                  <option value="menor_preco">Menor Preço</option>
-                  <option value="menor_preco">Maior Preço</option>
-                </select>
-                <select className="select" id="">
-                  <option value="categoria">Categoria</option>
-                </select>
-                <Link className="btn" href="/cadastro">
-                  Cadastro
-                </Link>
               </div>
               <ListaCard />
             </div>
