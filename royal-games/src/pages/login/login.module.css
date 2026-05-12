@@ -1,0 +1,19 @@
+#login {
+  gap: 20px;
+  height: 100vh;
+  display: grid;
+  padding: 0 40px;
+  align-items: end;
+  grid-template-columns: 1fr 1fr;
+  background-color: var(--cinza-escuro);
+}
+
+#login_logo {
+  width: 80%;
+  object-fit: contain;
+}
+
+#login img {
+  width: 100%;
+  object-fit: contain;
+}

@@ -1,0 +1,7 @@
+#detalhe {
+  align-content: center;
+  background-image: linear-gradient(
+    color-mix(var(--roxo) 50%, var(--cinza-escuro) 100%),
+    var(--cinza-escuro)
+  );
+}
