@@ -6,7 +6,7 @@ const Detalhe = () => {
     <>
       <Header />
       <section className="min_height">
-        <div className="container">
+        <div className="container column">
           <div className="card">
             <div>
               <h2>Detalhes do jogo</h2>

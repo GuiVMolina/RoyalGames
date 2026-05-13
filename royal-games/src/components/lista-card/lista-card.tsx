@@ -31,6 +31,14 @@ const ListaCard = () => {
       {/* Topo: Busca e Ações */}
       <div className="row">
         <input className="input" type="text" placeholder="Pesquisa seu jogo" />
+        <select className="select" name="preco" id="">
+          <option value="todos">Todos</option>
+          <option value="menor">Menor Preço</option>
+          <option value="maior">Maior Preço</option>
+        </select>
+        <select className="select" name="categoria" id="">
+          <option value="">Categorias</option>
+        </select>
         <Link className="btn" href="/cadastro">
           Cadastro
         </Link>
@@ -46,12 +54,6 @@ const ListaCard = () => {
       {/* Controles de Paginação Numérica */}
       <div
         className="row"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "8px",
-          marginTop: "20px",
-        }}
       >
         {/* Botão Voltar */}
         <button
