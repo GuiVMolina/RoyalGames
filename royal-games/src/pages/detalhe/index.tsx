@@ -1,6 +1,5 @@
 import Footer from "@/components/footer/footer";
 import Header from "@/components/header/header";
-import styles from "./detalhe.module.css";
 
 const Detalhe = () => {
   return (

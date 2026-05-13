@@ -9,7 +9,7 @@ const Header = () => {
           <img id={styles.logo} src="../imgs/royal_games_logo.png" />
         </Link>
         <nav className="nav">
-          <Link href="" className="link">
+          <Link href="/home" className="link">
             Catálogo
           </Link>
           <Link href="/login" className="link_redirect">

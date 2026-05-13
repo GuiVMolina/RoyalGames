@@ -8,46 +8,56 @@ const Cadastro = () => {
       <Header />
       <section className="min_height">
         <div className="container column">
-          <div></div>
           <div className="card">
             <div>
               <h2>Cadastrar novo jogo</h2>
               <hr className="line" />
             </div>
             <div className="row">
-              <div>
+              <div className="column">
                 <div className="campo_form">
                   <label>Nome</label>
-                  <input className="input" type="text" placeholder="" />
+                  <input className="input" type="text" placeholder="Nome do jogo" />
                 </div>
                 <div className="row">
                   <div className="campo_form">
                     <label>Valor</label>
-                    <input className="input" type="text" placeholder="" />
+                    <input className="input" type="text" placeholder="Preço" />
                   </div>
                   <div className="campo_form">
                     <label>Gênero</label>
-                    <select className="select" />
+                    <select className="select">
+                      <option value="genero">Gênero</option>
+                    </select>
                   </div>
                   <div className="campo_form">
                     <label>Classificação</label>
-                    <select className="select" />
+                    <select className="select">
+                      <option value="livre">Livre</option>
+                      <option value="livre">12+</option>
+                      <option value="livre">14+</option>
+                      <option value="livre">16+</option>
+                      <option value="livre">18+</option>
+                    </select>
                   </div>
                 </div>
                 <div className="row">
                   <div className="campo_form">
                     <label>Plataforma</label>
-                    <input className="input" type="text" placeholder="" />
+                    <input className="input" type="text" placeholder="Plataformas do jogo" />
                   </div>
                   <div className="campo_form">
                     <label>Imagem</label>
-                    <select className="select" />
+                    <input className="input" type="text" placeholder="URL da imagem" />
                   </div>
                 </div>
               </div>
               <div className="campo_form">
                 <label>Descrição</label>
-                <input className="input" type="text" placeholder="" />
+                <textarea
+                  className="textarea"
+                  placeholder="Descrição..."
+                />
               </div>
             </div>
           </div>

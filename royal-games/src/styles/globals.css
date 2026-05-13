@@ -25,14 +25,18 @@ html {
   scrollbar-color: var(--rosa) var(--cinza-escuro);
 }
 
+html[data-scroll-behavior="smooth"] {
+  scroll-behavior: smooth;
+}
+
 body {
+  background-attachment: fixed;
   background-color: var(--preto);
   background-image: radial-gradient(
-    circle at bottom, 
-    color-mix(in srgb, var(--roxo), transparent 65%) 0%, 
+    circle at bottom,
+    color-mix(in srgb, var(--roxo), transparent 65%) 0%,
     var(--cinza-escuro) 70%
   );
-  background-attachment: fixed;
 }
 
 p {
@@ -41,13 +45,34 @@ p {
 }
 
 a {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
   transition: var(--transition);
 }
 
 span {
   font-weight: 300;
+}
+
+::selection {
+  background-color: var(--rosa);
+}
+
+/* Estilo completo do Toast de Sucesso */
+.Toastify__toast--success {
+  font-weight: bold;
+  color: var(--rosa) !important;
+  background-color: #fff !important;
+}
+
+/* Barra de progresso */
+.Toastify__progress-bar--success {
+  background: var(--rosa) !important;
+}
+
+/* Ícone */
+.Toastify__toast--success .Toastify__toast-icon svg {
+  fill: var(--rosa) !important;
 }
 
 .min_height {
@@ -56,9 +81,9 @@ span {
 
 .container {
   width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
   display: flex;
+  margin: 0 auto;
+  min-height: inherit;
   align-items: center;
   justify-content: space-between;
 }
@@ -67,15 +92,15 @@ span {
 .li,
 .campo_form,
 .column {
+  gap: 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .nav {
-  flex-direction: row;
   gap: 20px;
   align-items: center;
+  flex-direction: row;
 }
 
 .li {
@@ -84,17 +109,20 @@ span {
 }
 
 .campo_form {
-  text-align: start;
   gap: 5px;
   width: 100%;
+  text-align: start;
 }
 
 .input,
-.select {
+.select,
+.textarea {
   border: 0;
+  min-width: 120px;
   padding: 10px 15px;
-  border-radius: var(--radius-sm);
   color: var(--branco);
+  appearance: base-select;
+  border-radius: var(--radius-sm);
   outline: 1px solid var(--branco-opaco);
   background: linear-gradient(
     135deg,
@@ -105,22 +133,38 @@ span {
 }
 
 .input:focus,
-.select:focus {
+.select:focus,
+.textarea:focus {
   outline: 1px solid var(--rosa);
+}
+
+.textarea {
+  height: 100%;
+  resize: vertical;
+}
+
+.select::picker(select) {
+  padding: 8px;
+  margin-top: 10px;
+  appearance: base-select;
+  border: 1px solid var(--rosa);
+  border-radius: var(--radius-sm);
+  background-color: var(--cinza-escuro);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
 .btn,
 .btn2,
 .link_redirect {
-  display: inline-block;
+  cursor: pointer;
   width: fit-content;
-  min-width: 100px;
   padding: 10px 20px;
   text-align: center;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: var(--transition);
+  display: inline-block;
   border: 1px solid var(--rosa);
+  transition: var(--transition);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 0 5px var(--rosa);
 }
 
 .btn {
@@ -129,13 +173,14 @@ span {
 
 .btn:hover,
 .link_redirect:hover {
-  background-color: var(--rosa);
   color: var(--branco);
+  background-color: var(--rosa);
+  box-shadow: 0 0 15px var(--rosa);
 }
 
 .btn2 {
-  background-color: var(--rosa);
   border: 1px solid var(--rosa);
+  background-color: var(--rosa);
 }
 
 .btn2:hover {
@@ -143,53 +188,66 @@ span {
 }
 
 .card {
+  gap: 15px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 40px;
+  overflow: hidden;
+  position: relative;
   text-align: center;
   align-self: center;
-  gap: 15px;
-  padding: 40px;
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(34, 28, 45, 0.7);
+  align-items: center;
+  flex-direction: column;
   backdrop-filter: blur(10px);
+  transition: var(--transition);
+  border-radius: var(--radius-md);
+  background: rgba(34, 28, 45, 0.7);
   -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow:
     inset 0 0 20px rgba(122, 59, 255, 0.1),
     0 10px 30px rgba(0, 0, 0, 0.5);
-
-  transition: var(--transition);
-  position: relative;
-  overflow: hidden;
 }
 
 .card::before {
   content: "";
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--rosa), transparent);
   opacity: 0.5;
+  position: absolute;
+  background: linear-gradient(90deg, transparent, var(--rosa), transparent);
 }
 
 .card:hover {
-  transform: translateY(-5px);
   border-color: var(--rosa);
+  transform: translateY(-5px);
   box-shadow:
     0 15px 40px rgba(0, 0, 0, 0.6),
     0 0 20px rgba(255, 0, 76, 0.2);
 }
 
 .line {
-  border: none;
-  height: 2px;
-  background: linear-gradient(90deg, var(--rosa), var(--roxo));
   width: 100%;
+  height: 2px;
+  border: none;
   margin: 10px 0;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, var(--rosa), var(--roxo));
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow:
+      0 0 5px color-mix(var(--rosa), var(--roxo)),
+      0 0 10px color-mix(var(--rosa), var(--roxo));
+  }
+  to {
+    box-shadow:
+      0 0 15px color-mix(var(--rosa), var(--roxo)),
+      0 0 30px color-mix(var(--rosa), var(--roxo));
+  }
 }
 
 .row {
@@ -197,4 +255,12 @@ span {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.glow_text {
+  color: var(--branco);
+  text-shadow:
+    0 0 5px var(--branco),
+    0 0 10px var(--rosa),
+    0 0 20px var(--rosa);
 }

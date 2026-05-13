@@ -1,11 +1,10 @@
 #login {
   gap: 20px;
-  height: 100vh;
   display: grid;
   padding: 0 40px;
   align-items: end;
+  min-height: 100vh;
   grid-template-columns: 1fr 1fr;
-  background-color: var(--cinza-escuro);
 }
 
 #login_logo {
@@ -13,7 +12,12 @@
   object-fit: contain;
 }
 
-#login img {
+#login form {
+  max-width: 600px;
+}
+
+#img_login {
   width: 100%;
+  max-height: 100vh;
   object-fit: contain;
 }
