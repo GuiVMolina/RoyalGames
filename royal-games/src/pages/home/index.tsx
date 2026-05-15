@@ -9,7 +9,7 @@ const Home = () => {
       <Header />
       <main>
         <section id={styles.banner}>
-          <article className="container">
+          <div className="container full_width">
             <div id={styles.text_space}>
               <h1 className="glow_text">Conheça nossos jogos!</h1>
               <p>
@@ -23,7 +23,7 @@ const Home = () => {
               src="../imgs/img_banner.png"
               alt="Imagem de uma mulher cyborg"
             />
-          </article>
+          </div>
         </section>
         <section>
           <div className="container column">

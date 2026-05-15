@@ -1,17 +1,16 @@
 #banner {
   padding: 40px 0;
   max-height: 90vh;
-  min-height: 600px;
+  min-height: 640px;
 }
 
 #img_banner {
-  margin-right: -5vw;
   border-image-slice: 1;
-  border-bottom: 2px solid;
-  border-image-source: linear-gradient(to right, var(--rosa), var(--roxo));
+  border-bottom: 1px solid;
+  border-image-source: linear-gradient(90deg, var(--rosa), var(--roxo));
 }
 
-#catalogo_title{
+#catalogo_title {
   width: 50%;
   display: flex;
   align-items: center;
@@ -32,9 +31,10 @@
 }
 
 #text_space {
-  max-width: 640px;
   gap: 10px;
   display: flex;
+  max-width: 640px;
+  margin-left: 15vw;
   flex-direction: column;
 }
 
