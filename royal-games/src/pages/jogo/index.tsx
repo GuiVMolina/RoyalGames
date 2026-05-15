@@ -2,6 +2,11 @@ import Footer from "@/components/footer/footer";
 import Header from "@/components/header/header";
 import ListaCard from "@/components/lista-card/lista-card";
 
+interface Classificacao {
+  classificacaoIds: number;
+  nome: string;
+}
+
 const Cadastro = () => {
   return (
     <>
@@ -17,7 +22,11 @@ const Cadastro = () => {
               <div className="column">
                 <div className="campo_form">
                   <label>Nome</label>
-                  <input className="input" type="text" placeholder="Nome do jogo" />
+                  <input
+                    className="input"
+                    type="text"
+                    placeholder="Nome do jogo"
+                  />
                 </div>
                 <div className="row">
                   <div className="campo_form">
@@ -33,31 +42,36 @@ const Cadastro = () => {
                   <div className="campo_form">
                     <label>Classificação</label>
                     <select className="select">
-                      <option value="livre">Livre</option>
-                      <option value="livre">12+</option>
-                      <option value="livre">14+</option>
-                      <option value="livre">16+</option>
-                      <option value="livre">18+</option>
+                      <option value="0">Livre</option>
+                      <option value="12">12+</option>
+                      <option value="14">14+</option>
+                      <option value="16">16+</option>
+                      <option value="18">18+</option>
                     </select>
                   </div>
                 </div>
                 <div className="row">
                   <div className="campo_form">
                     <label>Plataforma</label>
-                    <input className="input" type="text" placeholder="Plataformas do jogo" />
+                    <input
+                      className="input"
+                      type="text"
+                      placeholder="Plataformas do jogo"
+                    />
                   </div>
                   <div className="campo_form">
                     <label>Imagem</label>
-                    <input className="input" type="text" placeholder="URL da imagem" />
+                    <input
+                      className="input"
+                      type="file"
+                      placeholder="URL da imagem"
+                    />
                   </div>
                 </div>
               </div>
               <div className="campo_form">
                 <label>Descrição</label>
-                <textarea
-                  className="textarea"
-                  placeholder="Descrição..."
-                />
+                <textarea className="textarea" placeholder="Descrição..." />
               </div>
             </div>
           </div>

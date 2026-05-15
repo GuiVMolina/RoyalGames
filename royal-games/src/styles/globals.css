@@ -146,6 +146,17 @@ span {
   resize: vertical;
 }
 
+.input::file-selector-button {
+  border: 0;
+  border-radius: 4px;
+  color: var(--branco);
+  background-color: var(--rosa);
+}
+
+.input::file-selector-button:hover {
+  background-color: color-mix(var(--rosa) 100%, var(--cinza-escuro) 10%);
+}
+
 .select::picker(select) {
   padding: 8px;
   margin-top: 10px;

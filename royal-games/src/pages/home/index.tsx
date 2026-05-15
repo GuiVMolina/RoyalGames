@@ -1,7 +1,7 @@
+import ListaCard from "@/components/lista-card/lista-card";
 import Footer from "@/components/footer/footer";
 import Header from "@/components/header/header";
 import styles from "./home.module.css";
-import ListaCard from "@/components/lista-card/lista-card";
 
 const Home = () => {
   return (
@@ -43,8 +43,8 @@ const Home = () => {
               <hr className="line" />
             </div>
             <div className="card row">
-              <img id={styles.jogos_img} src="./imgs/csgo.png" alt="" />
-              <img id={styles.jogos_img} src="./imgs/csgo.png" alt="" />
+              <img id={styles.jogos_img} src="imgs/csgo.png" alt="" />
+              <img id={styles.jogos_img} src="imgs/csgo.png" alt="" />
             </div>
             <p id={styles.jogos_text}>
               Estudos indicam que jogos podem alterar o comportamento humano…

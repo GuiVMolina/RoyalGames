@@ -5,27 +5,56 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 const Login = () => {
+  const [email, setEmail] = useState<string>("");
+  const [senha, setSenha] = useState<string>("");
+
+  const router = useRouter();
+
+  async function autenticar(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    try {
+      await login(email, senha);
+      notificacao("Login bem sucedido!");
+
+      setTimeout(() => {
+        router.push("/home");
+      }, 3000);
+    } catch (error: any) {
+      erro(error.response.data);
+    }
+  }
+
   return (
     <>
       <section id={styles.login}>
-        <img id={styles.img_login} src="./imgs/img_login.png" alt="" />
-        <form className="card">
+        <img id={styles.img_login} src="imgs/img_login.png" alt="" />
+        <form className="card" onSubmit={autenticar}>
           <img
             id={styles.login_logo}
-            src="./imgs/royal_games_logo.png"
+            src="imgs/royal_games_logo.png"
             alt=""
           />
           <div className="campo_form">
-            <label>Email</label>
+            <label htmlFor="email">Email</label>
             <input
               className="input"
               type="text"
-              placeholder="admind@admin.com"
+              placeholder="admin@admin.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
           <div className="campo_form">
-            <label>Senha</label>
-            <input className="input" type="password" placeholder="123456" />
+            <label htmlFor="senha">Senha</label>
+            <input
+              className="input"
+              type="password"
+              placeholder="******"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              required
+            />
           </div>
           <button className="btn">Entrar</button>
         </form>

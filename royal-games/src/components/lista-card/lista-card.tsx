@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import styles from "./lista-module.module.css";
+import styles from "./lista-card.module.css";
 import Card from "../card[id]/card";
 
 const ListaCard = () => {
@@ -39,7 +39,7 @@ const ListaCard = () => {
         <select className="select" name="categoria" id="">
           <option value="">Categorias</option>
         </select>
-        <Link className="btn" href="/cadastro">
+        <Link className="btn" href="/jogo">
           Cadastro
         </Link>
       </div>
