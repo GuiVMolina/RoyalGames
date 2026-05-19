@@ -45,7 +45,7 @@ namespace RoyalGames.Applications.Services
             {
                 throw new DomainException("Nome é obrigatório.");
             }
-            if (jogoDto.Preco < 0)
+            if (jogoDto.Preco <= 0)
             {
                 throw new DomainException("Preço deve ser maior que zero.");
             }
@@ -79,7 +79,7 @@ namespace RoyalGames.Applications.Services
             return imagem;
         }
 
-        public LerJogoDto Adicionar(CriarJogoDto jogoDto, int usuarioId, int classificaoId)
+        public LerJogoDto Adicionar(CriarJogoDto jogoDto, int usuarioId, int classificacaoId)
         {
             ValidarCadastro(jogoDto);
 
@@ -96,7 +96,7 @@ namespace RoyalGames.Applications.Services
                 Imagem = ImagemParaBytes.ConverterImagem(jogoDto.Imagem),
                 StatusJogo = true,
                 FK_UsuarioID = usuarioId,
-                FK_ClassificacaoID = classificaoId
+                FK_ClassificacaoID = classificacaoId
             };
 
             _repository.Adicionar(jogo, jogoDto.GeneroIds, jogoDto.PlataformaIds);
@@ -130,7 +130,7 @@ namespace RoyalGames.Applications.Services
                 throw new DomainException("Jogo deve ter amo menos uma plataforma.");
             }
 
-            if (jogoDto.Preco < 0)
+            if (jogoDto.Preco <= 0)
             {
                 throw new DomainException("Preço deve ser maior que zero.");
             }
@@ -138,6 +138,7 @@ namespace RoyalGames.Applications.Services
             jogoBanco.Nome = jogoDto.Nome;
             jogoBanco.Preco = jogoDto.Preco;
             jogoBanco.Descricao = jogoDto.Descricao;
+            jogoBanco.FK_ClassificacaoID = jogoDto.ClassificacaoID;
 
             if (jogoDto.Imagem != null && jogoDto.Imagem.Length > 0)
             {

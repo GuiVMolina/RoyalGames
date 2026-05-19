@@ -1,15 +1,48 @@
-import Link from "next/link";
 import styles from "./card.module.css";
+import Link from "next/link";
+import { formatarPreco } from "../utils/formatacao";
 
-const Card = () => {
+type JogoProps = {
+  jogoID: number;
+  nome: string;
+  preco: number;
+  img: string;
+  onDelete: (jogoId: number) => void;
+  estaLogado: boolean;
+};
+
+const Card = ({
+  jogoID,
+  nome,
+  preco,
+  img,
+  onDelete,
+  estaLogado,
+}: JogoProps) => {
   return (
-    <div className="card">
-      <img id={styles.card_img} src="./imgs/minelegends.png" alt="" />
-      <h2>Minecraft Legends</h2>
-      <p>R$70,00</p>
-      <Link href="/detalhe" className="btn2">
-        Detalhes
-      </Link>
+    <div className="card" id={styles.card_jogo}>
+      <img id={styles.card_img} src={img} alt={nome} />
+      <div>
+        <h3>{nome}</h3>
+        <p>{formatarPreco(preco)}</p>
+      </div>
+
+      <div id={styles.card_botoes}>
+        <Link href={`/detalhe/${jogoID}`} className="btn2">
+          Detalhes
+        </Link>
+
+        {estaLogado && jogoID && (
+          <div id={styles.card_botoes_edit}>
+            <Link href={`/jogo?id=${jogoID}`} className="btn_icon">
+              ✏️
+            </Link>
+            <button onClick={() => onDelete(jogoID)} className="btn_icon">
+              ❌
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

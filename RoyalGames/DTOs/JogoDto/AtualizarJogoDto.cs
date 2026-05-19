@@ -8,6 +8,7 @@
         public IFormFile Imagem { get; set; } = null!;
         public List<int> GeneroIds { get; set; } = new();
         public List<int> PlataformaIds { get; set; } = new();
+        public int ClassificacaoID { get; set; }
         public bool? statusJogo { get; set; }
     }
 }

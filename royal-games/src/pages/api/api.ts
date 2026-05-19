@@ -1,5 +1,5 @@
-import axios from "axios";
 import secureLocalStorage from "react-secure-storage";
+import axios from "axios";
 
 const apiLocal = "https://localhost:7102/api/";
 
@@ -10,7 +10,7 @@ export const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  const token = secureLocalStorage.getItem("userToken");
+  const token = secureLocalStorage.getItem("Token");
 
   if (token) {
     config.headers.Authorization = "Bearer " + token;

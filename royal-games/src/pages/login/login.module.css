@@ -21,3 +21,13 @@
   max-height: 100vh;
   object-fit: contain;
 }
+
+@media (width <= 768px) {
+  #login {
+    grid-template-columns: 1fr;
+  }
+
+  #img_login {
+    display: none;
+  }
+}

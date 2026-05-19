@@ -1,9 +1,7 @@
 ﻿using RoyalGames.Applications.Regras;
 using RoyalGames.Exceptions;
-using RoyalGames.Applications.Regras;
 using RoyalGames.Domains;
 using RoyalGames.DTOs.GeneroDto;
-using RoyalGames.Exceptions;
 using RoyalGames.Interfaces;
 
 namespace RoyalGames.Applications.Services

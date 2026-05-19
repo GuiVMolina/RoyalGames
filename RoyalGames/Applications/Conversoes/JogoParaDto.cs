@@ -14,13 +14,12 @@ namespace RoyalGames.Applications.Conversoes
                 Preco = jogo.Preco,
                 Descricao = jogo.Descricao,
                 StatusJogo = jogo.StatusJogo,
+                ImagemUrl = $"jogo/{jogo.JogoID}/imagem",
 
                 GeneroIds = jogo.Genero.Select(genero => genero.GeneroID).ToList(),
-
                 Generos = jogo.Genero.Select(genero => genero.Nome).ToList(),
 
                 PlataformaIds = jogo.Plataforma.Select(plataforma => plataforma.PlataformaID).ToList(),
-
                 Plataformas = jogo.Plataforma.Select(plataforma => plataforma.Nome).ToList(),
 
                 UsuarioID = jogo.FK_UsuarioID,

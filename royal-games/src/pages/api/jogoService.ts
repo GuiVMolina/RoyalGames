@@ -28,20 +28,20 @@ export async function cadastrarJogo(dados: JogoFormulario) {
     formData.append("nome", dados.nome);
     formData.append("preco", dados.preco);
     formData.append("descricao", dados.descricao);
+    formData.append("classificacaoID", dados.classificacaoIds[0].toString());
+
+    dados.generoIds.forEach((generoId) => {
+      formData.append("generoIds", generoId.toString());
+    });
+    dados.plataformaIds.forEach((plataformaId) => {
+      formData.append("plataformaIds", plataformaId.toString());
+    });
+
     if (dados.imagem) {
       formData.append("imagem", dados.imagem);
     }
-    dados.generoIds.forEach((jogoId) => {
-      formData.append("generoIds", jogoId.toString());
-    });
-    dados.plataformaIds.forEach((jogoId) => {
-      formData.append("plataformaIds", jogoId.toString());
-    });
-    dados.classificacaoIds.forEach((jogoId) => {
-      formData.append("classificacaoIds", jogoId.toString());
-    });
 
-    await api.post("Jogo", formData);
+    await api.post("jogo", formData);
   } catch (error: any) {
     throw new Error(error.response.data);
   }
@@ -65,9 +65,9 @@ export async function listarJogo() {
   }
 }
 
-export async function listarPorId(jogoId: number) {
+export async function listarPorId(id: number) {
   try {
-    const response = await api.get("Jogo/" + jogoId);
+    const response = await api.get("jogo/" + id);
 
     const jogo = {
       ...response.data,
@@ -80,38 +80,35 @@ export async function listarPorId(jogoId: number) {
   }
 }
 
-export async function excluirJogo(jogoId: number) {
+export async function excluirJogo(id: number) {
   try {
-    await api.delete("Jogo/" + jogoId);
+    await api.delete("jogo/" + id);
   } catch (error: any) {
     throw new Error(error.response.data);
   }
 }
 
-export async function editarJogo(
-  jogoId: number,
-  dados: JogoFormulario,
-) {
+export async function editarJogo(id: number, dados: JogoFormulario) {
   try {
     const formData = new FormData();
 
     formData.append("nome", dados.nome);
     formData.append("preco", dados.preco);
     formData.append("descricao", dados.descricao);
+    formData.append("classificacaoID", dados.classificacaoIds[0].toString());
+
+    dados.generoIds.forEach((generoId) => {
+      formData.append("generoIds", generoId.toString());
+    });
+    dados.plataformaIds.forEach((plataformaId) => {
+      formData.append("plataformaIds", plataformaId.toString());
+    });
+
     if (dados.imagem) {
       formData.append("imagem", dados.imagem);
     }
-    dados.generoIds.forEach((jogoId) => {
-      formData.append("generoIds", jogoId.toString());
-    });
-    dados.plataformaIds.forEach((jogoId) => {
-      formData.append("plataformaIds", jogoId.toString());
-    });
-    dados.classificacaoIds.forEach((jogoId) => {
-      formData.append("classificacaoIds", jogoId.toString());
-    });
 
-    await api.put("Jogo/" + jogoId, formData);
+    await api.put("jogo/" + id, formData);
   } catch (error: any) {
     throw new Error(error.response.data);
   }
