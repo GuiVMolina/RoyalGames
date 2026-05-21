@@ -1,3 +1,6 @@
+/* ==========================================================================
+   1. VARIÁVEIS E TOKENS (:root)
+   ========================================================================== */
 :root {
   --preto: #0b0616;
   --preto-opaco: rgba(11, 6, 22, 0.1);
@@ -7,12 +10,16 @@
   --branco: #fff;
   --branco-suave: #faf2ff;
   --branco-opaco: rgba(214, 210, 230, 0.25);
-  --texto-p: 0.9rem;
+
+  --texto: 0.9rem;
   --transition: all 0.2s ease;
   --radius-sm: 10px;
   --radius-md: 20px;
 }
 
+/* ==========================================================================
+   2. RESET E CONFIGURAÇÕES BASE
+   ========================================================================== */
 * {
   margin: 0;
   padding: 0;
@@ -22,6 +29,7 @@
 }
 
 html {
+  overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: var(--rosa) var(--cinza-escuro);
 }
@@ -31,8 +39,8 @@ html[data-scroll-behavior="smooth"] {
 }
 
 body {
-  background-attachment: fixed;
   background-color: var(--preto);
+  background-attachment: fixed;
   background-image: radial-gradient(
     circle at bottom,
     color-mix(in srgb, var(--roxo), transparent 65%) 0%,
@@ -40,75 +48,43 @@ body {
   );
 }
 
-p {
-  font-size: var(--texto-p);
-  color: var(--branco-suave);
+::selection {
+  background-color: var(--rosa);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: var(--transition);
+/* ==========================================================================
+   3. TIPOGRAFIA E TEXTOS
+   ========================================================================== */
+.title {
+  font-family: var(--font-Orbitron);
+}
+
+.p {
+  font-size: var(--texto);
+  color: var(--branco-suave);
 }
 
 span {
   font-weight: 300;
 }
 
-::selection {
-  background-color: var(--rosa);
+.link {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition);
 }
 
-.Toastify__toast {
-  border-radius: 12px !important;
-  color: var(--branco) !important;
-  background-color: var(--cinza-escuro) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+.glow_text {
+  color: var(--branco);
+  text-shadow:
+    0 0 5px var(--branco),
+    0 0 10px var(--rosa),
+    0 0 20px var(--rosa);
 }
 
-.Toastify__progress-bar--success {
-  background: linear-gradient(to right, var(--rosa), var(--roxo)) !important;
-}
-
-.Toastify__toast--success .Toastify__toast-icon svg {
-  fill: var(--rosa) !important;
-}
-
-.min_height {
-  padding: 40px 0;
-  min-height: 75vh;
-}
-
-.container {
-  width: 90%;
-  display: flex;
-  margin: 0 auto;
-  min-height: inherit;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav,
-.li,
-.campo_form,
-.column {
-  gap: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.nav {
-  gap: 20px;
-  align-items: center;
-  flex-direction: row;
-}
-
-.li {
-  gap: 10px;
-  list-style: none;
-}
-
+/* ==========================================================================
+   4. FORMULÁRIOS E INPUTS
+   ========================================================================== */
 .campo_form {
   gap: 5px;
   width: 100%;
@@ -120,7 +96,7 @@ span {
 .textarea {
   border: 0;
   height: 40px;
-  min-width: 160px;
+  min-width: 200px;
   padding: 10px 15px;
   color: var(--branco);
   appearance: base-select;
@@ -141,10 +117,11 @@ span {
 }
 
 .textarea {
-  height: 80px;
+  height: 300px;
   resize: vertical;
 }
 
+/* Inputs Específicos (File, Checkbox, Select Picker) */
 .input::file-selector-button {
   border: 0;
   border-radius: 4px;
@@ -153,11 +130,15 @@ span {
 }
 
 .input::file-selector-button:hover {
-  background-color: color-mix(var(--rosa) 100%, var(--cinza-escuro) 10%);
+  background-color: color-mix(in srgb, var(--rosa) 90%, var(--cinza-escuro));
 }
 
 input[type="checkbox"] {
   accent-color: var(--rosa);
+}
+
+.checkbox_label {
+  margin-left: 5px;
 }
 
 .select::picker(select) {
@@ -170,23 +151,24 @@ input[type="checkbox"] {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
-.checkbox_label {
-  margin-left: 5px;
-}
-
+/* ==========================================================================
+   5. BOTÕES E COMPONENTES DE CLIQUE
+   ========================================================================== */
 .btn,
 .btn2,
 .link_redirect {
+  display: inline-block;
+  font-size: var(--texto);
   height: 40px;
-  cursor: pointer;
   width: fit-content;
   padding: 10px 20px;
   text-align: center;
-  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
   border: 1px solid var(--rosa);
-  transition: var(--transition);
   border-radius: var(--radius-sm);
   box-shadow: 0 0 5px var(--rosa);
+  transition: var(--transition);
 }
 
 .btn {
@@ -200,8 +182,11 @@ input[type="checkbox"] {
   box-shadow: 0 0 15px var(--rosa);
 }
 
+.link_redirect {
+  background-color: var(--rosa);
+}
+
 .btn2 {
-  border: 1px solid var(--rosa);
   background-color: var(--rosa);
 }
 
@@ -212,6 +197,7 @@ input[type="checkbox"] {
 .btn_icon {
   border: 0;
   padding: 10px;
+  text-decoration: none;
   background-color: transparent;
   transition: var(--transition);
 }
@@ -221,57 +207,83 @@ input[type="checkbox"] {
   transform: translateY(-2px);
 }
 
+/* ==========================================================================
+   6. CARDS, LINHAS E UTILITÁRIOS VISUAIS
+   ========================================================================== */
 .card {
-  gap: 20px;
-  display: flex;
-  padding: 40px;
-  overflow: hidden;
-  max-width: 800px;
   position: relative;
-  align-self: center;
-  text-align: center;
-  align-items: center;
+  display: flex;
   flex-direction: column;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: var(--transition);
+  align-items: center;
+  align-self: center;
+  gap: 20px;
+  max-width: 800px;
+  padding: 40px;
+  text-align: center;
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-md);
   background: rgba(34, 28, 45, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow:
     inset 0 0 20px rgba(122, 59, 255, 0.15),
     0 10px 30px rgba(0, 0, 0, 0.6);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: var(--transition);
 }
 
 .card::before {
   content: "";
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 3px;
   opacity: 0.8;
-  position: absolute;
   background: linear-gradient(90deg, transparent, var(--rosa), transparent);
 }
 
 .card:hover {
   border-color: var(--rosa);
-  transform: translateY(-5px);
+  transform: translateY(-2px);
   box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.7),
     0 0 25px rgba(255, 0, 76, 0.25);
 }
 
 .line {
+  border: none;
   width: 100%;
   height: 2px;
-  border: none;
   margin: 15px 0;
   border-radius: var(--radius-sm);
   background: linear-gradient(90deg, var(--rosa), var(--roxo));
   animation: glow 2s infinite alternate;
 }
 
+/* ==========================================================================
+   7. LIB EXTERNA (Toastify Customization)
+   ========================================================================== */
+.Toastify__toast {
+  border-radius: 12px !important;
+  color: var(--branco) !important;
+  background-color: var(--cinza-escuro) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.Toastify__progress-bar--success {
+  background: linear-gradient(to right, var(--rosa), var(--roxo)) !important;
+}
+
+.Toastify__toast--success .Toastify__toast-icon svg {
+  fill: var(--rosa) !important;
+}
+
+/* ==========================================================================
+   8. ANIMAÇÕES (Keyframes)
+   ========================================================================== */
 @keyframes glow {
   from {
     box-shadow:
@@ -285,23 +297,51 @@ input[type="checkbox"] {
   }
 }
 
-.row {
-  width: 100%;
-  gap: 20px;
+/* ==========================================================================
+   9. LAYOUT E ESTRUTURA (Grid/Flexbox)
+   ========================================================================== */
+.container {
+  width: 90%;
+  margin: 0 auto;
   display: flex;
-  align-items: start;
-  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
+  min-height: inherit;
+}
+
+.min_height {
+  padding: 40px 0;
+  min-height: 75vh;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.column,
+.nav,
+.ul,
+.campo_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.nav {
+  flex-direction: row;
+  align-items: center;
+}
+
+.ul {
+  gap: 10px;
+  list-style: none;
 }
 
 .full_width {
   width: 100%;
-}
-
-.glow_text {
-  color: var(--branco);
-  text-shadow:
-    0 0 5px var(--branco),
-    0 0 10px var(--rosa),
-    0 0 20px var(--rosa);
 }

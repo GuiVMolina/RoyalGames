@@ -17,7 +17,7 @@ const exo = Exo({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={exo.variable}>
+    <main className={`${exo.variable} ${orbitron.variable} font-sans`}>
       <Component {...pageProps} />
       <ToastContainer />
     </main>

@@ -41,7 +41,7 @@ export async function cadastrarJogo(dados: JogoFormulario) {
       formData.append("imagem", dados.imagem);
     }
 
-    await api.post("jogo", formData);
+    await api.post("Jogo", formData);
   } catch (error: any) {
     throw new Error(error.response.data);
   }
@@ -49,7 +49,7 @@ export async function cadastrarJogo(dados: JogoFormulario) {
 
 export async function listarJogo() {
   try {
-    const response = await api.get("jogo");
+    const response = await api.get("Jogo");
     const jogosAtivos = response.data.filter(
       (jogo: JogoListagem) => jogo.statusJogo === true,
     );
@@ -67,7 +67,7 @@ export async function listarJogo() {
 
 export async function listarPorId(id: number) {
   try {
-    const response = await api.get("jogo/" + id);
+    const response = await api.get("Jogo/" + id);
 
     const jogo = {
       ...response.data,
@@ -82,7 +82,7 @@ export async function listarPorId(id: number) {
 
 export async function excluirJogo(id: number) {
   try {
-    await api.delete("jogo/" + id);
+    await api.delete("Jogo/" + id);
   } catch (error: any) {
     throw new Error(error.response.data);
   }
@@ -108,7 +108,7 @@ export async function editarJogo(id: number, dados: JogoFormulario) {
       formData.append("imagem", dados.imagem);
     }
 
-    await api.put("jogo/" + id, formData);
+    await api.put("Jogo/" + id, formData);
   } catch (error: any) {
     throw new Error(error.response.data);
   }

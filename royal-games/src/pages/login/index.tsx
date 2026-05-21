@@ -3,6 +3,7 @@ import { erro, notificacao } from "@/components/utils/toast";
 import { login } from "../api/authService";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import Link from "next/link";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -29,11 +30,7 @@ const Login = () => {
       <section id={styles.login}>
         <img id={styles.img_login} src="imgs/img_login.png" alt="" />
         <form className="card" onSubmit={autenticar}>
-          <img
-            id={styles.login_logo}
-            src="imgs/royal_games_logo.png"
-            alt=""
-          />
+          <img id={styles.login_logo} src="imgs/royal_games_logo.png" alt="" />
           <div className="campo_form">
             <label htmlFor="email">Email</label>
             <input

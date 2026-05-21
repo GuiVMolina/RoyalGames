@@ -1,5 +1,6 @@
-import { api } from "./api";
 import secureLocalStorage from "react-secure-storage";
+import { erro } from "@/components/utils/toast";
+import { api } from "./api";
 
 export async function login(email: string, senha: string) {
   try {
@@ -8,6 +9,14 @@ export async function login(email: string, senha: string) {
 
     secureLocalStorage.setItem("Token", token);
   } catch (error: any) {
-    throw new Error("Email ou senha inválidos");
+    throw erro("Email ou senha inválidos");
+  }
+}
+
+export async function logout() {
+  try {
+    secureLocalStorage.removeItem("Token");
+  } catch (error: any) {
+    throw erro("Erro ao sair da conta");
   }
 }

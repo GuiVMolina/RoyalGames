@@ -10,13 +10,6 @@
   border-image-source: linear-gradient(90deg, var(--rosa), var(--roxo));
 }
 
-#catalogo_title {
-  width: 50%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
 #catalogo_style {
   gap: 20px;
   display: flex;
@@ -24,7 +17,7 @@
   flex-direction: column;
 }
 
-#jogos {
+#jogo {
   padding: 40px 0;
   max-height: 60vh;
   min-height: 480px;
@@ -42,11 +35,11 @@
   padding: 20px;
 }
 
-#jogos_img {
+#jogo_img {
   width: 40%;
 }
 
-#jogos_text {
+#jogo_text {
   width: 75%;
   text-align: center;
 }

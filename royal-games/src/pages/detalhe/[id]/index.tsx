@@ -39,11 +39,11 @@ const Detalhe = () => {
   if (!jogo) {
     return (
       <>
-        <Header />
+        <Header pages="voltar" />
         <section className="min_height">
           <div className="container column">
             <div className="card">
-              <p>Carregando jogo...</p>
+              <p className="p">Carregando jogo...</p>
             </div>
           </div>
         </section>
@@ -54,12 +54,12 @@ const Detalhe = () => {
 
   return (
     <>
-      <Header />
+      <Header pages="voltar" />
       <section className="min_height">
         <div className="container column">
           <div className="card">
             <div>
-              <h2>Detalhes do jogo</h2>
+              <h2 className="title">Detalhes do jogo</h2>
               <hr className="line" />
             </div>
             <div className="row">
@@ -69,23 +69,23 @@ const Detalhe = () => {
                   alt={jogo.nome}
                   id={styles.card_img}
                 />
-                <h3>
+                <h3 className="title">
                   Preço: <span>{formatarPreco(jogo.preco)}</span>
                 </h3>
               </div>
               <div className="column">
-                <h3>{jogo.nome}</h3>
-                <p>{jogo.descricao}</p>
+                <h3 className="title">{jogo.nome}</h3>
+                <p className="p">{jogo.descricao}</p>
               </div>
             </div>
             <div className="row">
-              <h4>
+              <h4 className="title">
                 Classificação indicativa:{" "}
                 <span>{jogo.classificacaoNome ?? "--"}</span>
               </h4>
               <div>
-                <h4>Plataformas:</h4>
-                <ul>
+                <h4 className="title">Plataformas:</h4>
+                <ul className="ul">
                   {jogo.plataformas?.map((cat) => (
                     <li className="li" key={`plataforma-${cat}`}>
                       {cat}
@@ -94,8 +94,8 @@ const Detalhe = () => {
                 </ul>
               </div>
               <div>
-                <h4>Gêneros:</h4>
-                <ul>
+                <h4 className="title">Gêneros:</h4>
+                <ul className="ul">
                   {jogo.generos?.map((cat) => (
                     <li className="li" key={`genero-${cat}`}>
                       {cat}

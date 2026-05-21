@@ -1,4 +1,5 @@
 #card_img {
   width: 100%;
+  min-width: 300px;
   border-radius: 20px;
 }

@@ -22,9 +22,9 @@ const Card = ({
   return (
     <div className="card" id={styles.card_jogo}>
       <img id={styles.card_img} src={img} alt={nome} />
-      <div>
-        <h3>{nome}</h3>
-        <p>{formatarPreco(preco)}</p>
+      <div id={styles.card_texto}>
+        <h3 className="title">{nome}</h3>
+        <p className="p">{formatarPreco(preco)}</p>
       </div>
 
       <div id={styles.card_botoes}>

@@ -1,8 +1,8 @@
 #lista_card {
   gap: 20px;
   display: grid;
-  max-width: 75vw;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  max-width: 90vw;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 @media (width <= 768px) {
@@ -10,5 +10,9 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+  }
+
+  #lista_card {
+    grid-template-columns: 1fr 1fr;
   }
 }

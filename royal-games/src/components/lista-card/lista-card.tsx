@@ -16,6 +16,7 @@ interface Jogo {
   generoIds: number[];
   plataformaIds: number[];
   classificacaoIds: number | number[];
+  classificacaoNome?: string | null;
   imagemUrl: string;
   statusJogo: boolean;
 }
@@ -23,47 +24,70 @@ interface Jogo {
 const ListaCard = () => {
   const [paginaAtual, setPaginaAtual] = useState(1);
   const itensPorPagina = 6;
+
   const [jogo, setJogo] = useState<Jogo[]>([]);
   const [ordem, setOrdem] = useState("todos");
-  const [filtroClassificacao, setFiltroClassificacao] = useState("0");
   const [pesquisa, setPesquisa] = useState("");
 
-  // Usamos useState/useEffect para evitar incompatibilidade de hidratação no Next.js
+  const [filtroClassificacao, setFiltroClassificacao] = useState("0");
+
   const [estaAutenticado, setEstaAutenticado] = useState(false);
+
+  const classificacaoIdParaIdade: Record<number, number> = {
+    1: 0,
+    2: 10,
+    3: 12,
+    4: 14,
+    5: 16,
+    6: 18,
+  };
+
+  const obterIdadeClassificacao = (
+    valor: number | string | null | undefined,
+  ) => {
+    if (valor === null || valor === undefined) return null;
+
+    if (typeof valor === "number") {
+      return classificacaoIdParaIdade[valor] ?? valor;
+    }
+
+    const texto = valor.toString().trim();
+    if (/^livre$/i.test(texto)) return 0;
+
+    const match = texto.match(/\d+/);
+    return match ? Number(match[0]) : null;
+  };
 
   async function listar() {
     try {
       const lista = await listarJogo();
-      // Garante que a lista não é nula ou undefined antes de salvar
-      setJogo(lista || []);
+      setJogo(lista);
     } catch (error: any) {
       erro("Erro ao carregar jogos");
     }
   }
 
-  function confirmarExcluir(jogoId: number) {
-    if (!jogoId) {
-      erro("ID do jogo inválido.");
-      return;
-    }
-
+  async function confirmarExcluir(jogoId: number) {
     toastConfirmarExcluir(async () => {
       try {
         await excluirJogo(jogoId);
-
-        // Remove ou inativa o jogo da lista local instantaneamente
-        setJogo((listaAtual) => listaAtual.filter((j) => j.jogoID !== jogoId));
+        setJogo((listaAtual) =>
+          listaAtual.map((jogo) =>
+            jogo.jogoID === jogoId ? { ...jogo, statusJogo: false } : jogo,
+          ),
+        );
 
         notificacao("Jogo inativado com sucesso!");
+        listar();
       } catch (error: any) {
-        erro("Erro ao excluir o jogo");
+        erro("Erro ao inativar o jogo");
       }
     });
   }
 
   useEffect(() => {
-    listar();
     setEstaAutenticado(verificarAutenticacao());
+    listar();
   }, []);
 
   // Filtros e Ordenação
@@ -74,11 +98,21 @@ const ListaCard = () => {
     })
     .filter((item) => {
       if (filtroClassificacao === "0") return true;
+
       const idadeMinima = Number(filtroClassificacao);
       const classificacoes = Array.isArray(item.classificacaoIds)
         ? item.classificacaoIds
         : [item.classificacaoIds];
-      return classificacoes.some((valor) => Number(valor) >= idadeMinima);
+
+      const valoresParaFiltrar = [
+        ...classificacoes,
+        item.classificacaoNome ?? "",
+      ];
+
+      return valoresParaFiltrar.some((valor) => {
+        const idade = obterIdadeClassificacao(valor);
+        return idade !== null && idade >= idadeMinima;
+      });
     })
     .sort((a, b) => {
       if (ordem === "menor_preco") return a.preco - b.preco;
@@ -105,7 +139,7 @@ const ListaCard = () => {
           placeholder="Busque seu jogo..."
           value={pesquisa}
           onChange={(e) => {
-            setPaginaAtual(1); // Reseta para a página 1 ao buscar
+            setPaginaAtual(1);
             setPesquisa(e.target.value);
           }}
         />
@@ -123,16 +157,18 @@ const ListaCard = () => {
           value={filtroClassificacao}
           onChange={(e) => setFiltroClassificacao(e.target.value)}
         >
-          <option value="0">Livre</option>
+          <option value="0">Classificação (todas)</option>
           <option value="10">10+</option>
           <option value="12">12+</option>
           <option value="14">14+</option>
           <option value="16">16+</option>
           <option value="18">18+</option>
         </select>
-        <Link className="btn" href="/jogo">
-          Cadastro
-        </Link>
+        {estaAutenticado && (
+          <Link className="btn" href="/jogo">
+            Adicionar
+          </Link>
+        )}
       </div>
 
       <article id={styles.lista_card}>
@@ -149,7 +185,7 @@ const ListaCard = () => {
             />
           ))
         ) : (
-          <p>Nenhum jogo encontrado...</p>
+          <p className="p">Nenhum jogo encontrado...</p>
         )}
       </article>
 

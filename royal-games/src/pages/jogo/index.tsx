@@ -68,7 +68,7 @@ const Jogo = () => {
     }
   }
 
-  async function listarClassificacoesJogo() {
+  async function listarClassificacaoJogo() {
     try {
       const lista = await listarClassificacao();
       setClassificacoes(lista.data);
@@ -77,7 +77,7 @@ const Jogo = () => {
         setClassificacaoSelecionada(Number(lista.data[0].classificacaoID));
       }
     } catch (error) {
-      erro("Erro ao carregar Classificações");
+      erro("Erro ao carregar Classificação");
     }
   }
 
@@ -110,7 +110,7 @@ const Jogo = () => {
         setClassificacaoSelecionada(classId || 0);
       }
     } catch (error) {
-      erro("Erro ao carregar dados do produto");
+      erro("Erro ao carregar dados do jogo");
     }
   }
 
@@ -127,7 +127,7 @@ const Jogo = () => {
 
     listarGenerosJogo();
     listarPlataformasJogo();
-    listarClassificacoesJogo();
+    listarClassificacaoJogo();
   }, [router.isReady, id]);
 
   if (!estaAutenticado) {
@@ -162,7 +162,7 @@ const Jogo = () => {
 
   return (
     <>
-      <Header />
+      <Header pages="voltar" />
       <section className="min_height">
         <div className="container column">
           <div className="card">
@@ -171,158 +171,162 @@ const Jogo = () => {
               <hr className="line" />
             </div>
             <form className="column" onSubmit={salvarJogo}>
-              <div className="column">
-                <div className="campo_form">
-                  <label>Nome</label>
-                  <input
-                    className="input"
-                    type="text"
-                    placeholder="Nome do jogo"
-                    value={nome}
-                    onChange={(e) => setNome(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="row">
+              <div className="row">
+                <div className="column">
                   <div className="campo_form">
-                    <label>Valor</label>
+                    <label>Nome</label>
                     <input
                       className="input"
                       type="text"
-                      placeholder="Preço"
-                      value={preco}
-                      onChange={(e) => setPreco(e.target.value)}
+                      placeholder="Nome do jogo"
+                      value={nome}
+                      onChange={(e) => setNome(e.target.value)}
                       required
                     />
                   </div>
+                  <div className="row">
+                    <div className="campo_form">
+                      <label>Valor</label>
+                      <input
+                        className="input"
+                        type="text"
+                        placeholder="Preço"
+                        value={preco}
+                        onChange={(e) => setPreco(e.target.value)}
+                        required
+                      />
+                    </div>
+
+                    <div className="campo_form">
+                      <label>Classificação</label>
+                      <select
+                        className="select"
+                        value={classificacaoSelecionada}
+                        onChange={(e) =>
+                          setClassificacaoSelecionada(Number(e.target.value))
+                        }
+                        required
+                      >
+                        {classificacaoSelecionada === 0 && (
+                          <option value={0}>Selecione...</option>
+                        )}
+                        {classificacoes.map((item) => (
+                          <option
+                            key={item.classificacaoID}
+                            value={item.classificacaoID}
+                          >
+                            {item.nome}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="row">
+                    <div className="campo_form">
+                      <label className="label">Gênero</label>
+                      <div className="checkbox">
+                        {generos.map((item) => (
+                          <div key={item.generoID}>
+                            <input
+                              type="checkbox"
+                              id={`gen-${item.generoID}`}
+                              value={item.generoID}
+                              checked={generosSelecionados.includes(
+                                Number(item.generoID),
+                              )}
+                              onChange={(e) => {
+                                const genId = Number(e.target.value);
+                                if (e.target.checked) {
+                                  setGenerosSelecionados([
+                                    ...generosSelecionados,
+                                    genId,
+                                  ]);
+                                } else {
+                                  setGenerosSelecionados(
+                                    generosSelecionados.filter(
+                                      (g) => g !== genId,
+                                    ),
+                                  );
+                                }
+                              }}
+                            />
+                            <label
+                              htmlFor={`gen-${item.generoID}`}
+                              className="checkbox_label"
+                            >
+                              {item.nome}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="campo_form">
+                      <label className="label">Plataforma</label>
+                      <div className="checkbox">
+                        {plataformas.map((item) => (
+                          <div key={item.plataformaID}>
+                            <input
+                              type="checkbox"
+                              id={`plat-${item.plataformaID}`}
+                              value={item.plataformaID}
+                              checked={plataformasSelecionadas.includes(
+                                Number(item.plataformaID),
+                              )}
+                              onChange={(e) => {
+                                const platId = Number(e.target.value);
+                                if (e.target.checked) {
+                                  setPlataformasSelecionadas([
+                                    ...plataformasSelecionadas,
+                                    platId,
+                                  ]);
+                                } else {
+                                  setPlataformasSelecionadas(
+                                    plataformasSelecionadas.filter(
+                                      (p) => p !== platId,
+                                    ),
+                                  );
+                                }
+                              }}
+                            />
+                            <label
+                              htmlFor={`plat-${item.plataformaID}`}
+                              className="checkbox_label"
+                            >
+                              {item.nome}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
 
                   <div className="campo_form">
-                    <label>Classificação</label>
-                    <select
-                      className="select"
-                      value={classificacaoSelecionada}
-                      onChange={(e) =>
-                        setClassificacaoSelecionada(Number(e.target.value))
-                      }
+                    <label>Imagem</label>
+                    <input
+                      className="input"
+                      type="file"
+                      required={!telaEditar}
+                      onChange={(e) => {
+                        if (e.target.files && e.target.files[0]) {
+                          setImagem(e.target.files[0]);
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div className="campo_form">
+                    <label>Descrição</label>
+                    <textarea
+                      className="textarea"
+                      placeholder="Descrição..."
+                      value={descricao}
+                      onChange={(e) => setDescricao(e.target.value)}
                       required
-                    >
-                      {classificacaoSelecionada === 0 && (
-                        <option value={0}>Selecione...</option>
-                      )}
-                      {classificacoes.map((item) => (
-                        <option
-                          key={item.classificacaoID}
-                          value={item.classificacaoID}
-                        >
-                          {item.nome}
-                        </option>
-                      ))}
-                    </select>
+                    />
                   </div>
                 </div>
-
-                <div className="row">
-                  <div className="campo_form">
-                    <label className="label">Gênero</label>
-                    <div className="checkbox">
-                      {generos.map((item) => (
-                        <div key={item.generoID}>
-                          <input
-                            type="checkbox"
-                            id={`gen-${item.generoID}`}
-                            value={item.generoID}
-                            checked={generosSelecionados.includes(
-                              Number(item.generoID),
-                            )}
-                            onChange={(e) => {
-                              const genId = Number(e.target.value);
-                              if (e.target.checked) {
-                                setGenerosSelecionados([
-                                  ...generosSelecionados,
-                                  genId,
-                                ]);
-                              } else {
-                                setGenerosSelecionados(
-                                  generosSelecionados.filter(
-                                    (g) => g !== genId,
-                                  ),
-                                );
-                              }
-                            }}
-                          />
-                          <label
-                            htmlFor={`gen-${item.generoID}`}
-                            className="checkbox_label"
-                          >
-                            {item.nome}
-                          </label>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="campo_form">
-                    <label className="label">Plataforma</label>
-                    <div className="checkbox">
-                      {plataformas.map((item) => (
-                        <div key={item.plataformaID}>
-                          <input
-                            type="checkbox"
-                            id={`plat-${item.plataformaID}`}
-                            value={item.plataformaID}
-                            checked={plataformasSelecionadas.includes(
-                              Number(item.plataformaID),
-                            )}
-                            onChange={(e) => {
-                              const platId = Number(e.target.value);
-                              if (e.target.checked) {
-                                setPlataformasSelecionadas([
-                                  ...plataformasSelecionadas,
-                                  platId,
-                                ]);
-                              } else {
-                                setPlataformasSelecionadas(
-                                  plataformasSelecionadas.filter(
-                                    (p) => p !== platId,
-                                  ),
-                                );
-                              }
-                            }}
-                          />
-                          <label
-                            htmlFor={`plat-${item.plataformaID}`}
-                            className="checkbox_label"
-                          >
-                            {item.nome}
-                          </label>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="campo_form">
-                  <label>Imagem</label>
-                  <input
-                    className="input"
-                    type="file"
-                    required={!telaEditar}
-                    onChange={(e) => {
-                      if (e.target.files && e.target.files[0]) {
-                        setImagem(e.target.files[0]);
-                      }
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="campo_form">
-                <label>Descrição</label>
-                <textarea
-                  className="textarea"
-                  placeholder="Descrição..."
-                  value={descricao}
-                  onChange={(e) => setDescricao(e.target.value)}
-                  required
-                />
               </div>
               <div className="row">
                 <Link href="/home" className="btn">
