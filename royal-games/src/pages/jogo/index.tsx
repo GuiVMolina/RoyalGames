@@ -1,6 +1,7 @@
 import ListaCard from "@/components/lista-card/lista-card";
 import Footer from "@/components/footer/footer";
 import Header from "@/components/header/header";
+import Button from "@/components/button/button";
 import Link from "next/link";
 import { cadastrarJogo, editarJogo, listarPorId } from "../api/jogoService";
 import { listarClassificacao } from "../api/classificacaoService";
@@ -167,7 +168,9 @@ const Jogo = () => {
         <div className="container column">
           <div className="card">
             <div>
-              <h2 className="title glow_text">{telaEditar ? "Editar" : "Criar"} jogo</h2>
+              <h2 className="title glow_text">
+                {telaEditar ? "Editar" : "Criar"} jogo
+              </h2>
               <hr className="line" />
             </div>
             <form className="column" onSubmit={salvarJogo}>
@@ -332,9 +335,10 @@ const Jogo = () => {
                 <Link href="/home" className="btn">
                   Voltar
                 </Link>
-                <button type="submit" className="btn2">
-                  {telaEditar ? "Salvar alterações" : "Cadastrar jogo"}
-                </button>
+                <Button
+                  className="btn2"
+                  children={telaEditar ? "Salvar alterações" : "Cadastrar jogo"}
+                />
               </div>
             </form>
           </div>

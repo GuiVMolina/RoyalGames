@@ -1,4 +1,5 @@
 import styles from "./card.module.css";
+import Button from "../button/button";
 import Link from "next/link";
 import { formatarPreco } from "../utils/formatacao";
 
@@ -37,9 +38,11 @@ const Card = ({
             <Link href={`/jogo?id=${jogoID}`} className="btn_icon">
               ✏️
             </Link>
-            <button onClick={() => onDelete(jogoID)} className="btn_icon">
-              ❌
-            </button>
+            <Button
+              onClick={() => onDelete(jogoID)}
+              className="btn_icon"
+              children="❌"
+            />
           </div>
         )}
       </div>

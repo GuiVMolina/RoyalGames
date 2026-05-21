@@ -1,5 +1,6 @@
 import Footer from "@/components/footer/footer";
 import Header from "@/components/header/header";
+import Button from "@/components/button/button";
 import Link from "next/link";
 import { verificarAutenticacao } from "@/components/utils/auth";
 import { erro, notificacao } from "@/components/utils/toast";
@@ -60,7 +61,7 @@ const Plataforma = () => {
                 <Link href="/home" className="btn">
                   Cancelar
                 </Link>
-                <button className="btn2">Salvar</button>
+                <Button className="btn2" children="Salvar" />
               </div>
             </form>
           </div>

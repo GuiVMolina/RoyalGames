@@ -1,9 +1,9 @@
+import Button from "@/components/button/button";
 import styles from "./login.module.css";
 import { erro, notificacao } from "@/components/utils/toast";
 import { login } from "../api/authService";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import Link from "next/link";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -53,7 +53,7 @@ const Login = () => {
               required
             />
           </div>
-          <button className="btn">Entrar</button>
+          <Button className="btn2" children="Entrar" />
         </form>
       </section>
     </>

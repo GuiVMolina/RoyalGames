@@ -7,6 +7,7 @@ import { erro, notificacao, toastConfirmarExcluir } from "../utils/toast";
 import { excluirJogo, listarJogo } from "@/pages/api/jogoService";
 import { verificarAutenticacao } from "../utils/auth";
 import { useEffect, useState } from "react";
+import Button from "../button/button";
 
 interface Jogo {
   jogoID: number;
@@ -201,17 +202,16 @@ const ListaCard = () => {
 
       {totalPaginas > 1 && (
         <div className="row">
-          <button
+          <Button
             className="btn"
             onClick={() => setPaginaAtual((prev) => Math.max(prev - 1, 1))}
             disabled={paginaAtual === 1}
             style={{ cursor: paginaAtual === 1 ? "not-allowed" : "pointer" }}
-          >
-            &lt;
-          </button>
+            children="<"
+          />
 
           {numerosPaginas.map((numero) => (
-            <button
+            <Button
               key={numero}
               onClick={() => setPaginaAtual(numero)}
               className="btn"
@@ -219,12 +219,11 @@ const ListaCard = () => {
                 backgroundColor:
                   paginaAtual === numero ? "var(--rosa)" : "transparent",
               }}
-            >
-              {numero}
-            </button>
+              children={numero}
+            />
           ))}
 
-          <button
+          <Button
             className="btn"
             onClick={() =>
               setPaginaAtual((prev) => Math.min(prev + 1, totalPaginas))
@@ -233,9 +232,8 @@ const ListaCard = () => {
             style={{
               cursor: paginaAtual === totalPaginas ? "not-allowed" : "pointer",
             }}
-          >
-            &gt;
-          </button>
+            children=">"
+          />
         </div>
       )}
       {estaAutenticado && (
