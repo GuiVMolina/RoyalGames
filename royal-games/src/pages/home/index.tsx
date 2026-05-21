@@ -27,23 +27,19 @@ const Home = () => {
         </section>
         <section id="catalogo">
           <div className="container column">
-            <div id={styles.catalogo_style}>
-              <div>
-                <h2 className="title">Catálogo de jogos</h2>
-                <hr className="line" />
-              </div>
-              <ListaCard />
-            </div>
+            <ListaCard />
           </div>
         </section>
         <section id={styles.jogo}>
           <div className="container column">
             <div>
-              <h2 className="title">Jogos online podem afetar o comportamento humano?</h2>
+              <h2 className="title glow_text">
+                Jogos online podem afetar o comportamento humano?
+              </h2>
               <hr className="line" />
             </div>
             <div className="card row">
-              <img id={styles.jogo_img} src="imgs/csgo.png" alt="" />
+              <img id={styles.jogo_img} src="imgs/lol.png" alt="" />
               <img id={styles.jogo_img} src="imgs/csgo.png" alt="" />
             </div>
             <p className="p" id={styles.jogo_text}>

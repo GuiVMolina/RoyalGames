@@ -3,18 +3,17 @@
    ========================================================================== */
 :root {
   --preto: #0b0616;
-  --preto-opaco: rgba(11, 6, 22, 0.1);
+  --preto-opaco: rgba(11, 6, 22, 0.15);
   --cinza-escuro: #221c2d;
   --rosa: #ff004c;
   --roxo: #7a3bff;
   --branco: #fff;
-  --branco-suave: #faf2ff;
   --branco-opaco: rgba(214, 210, 230, 0.25);
 
   --texto: 0.9rem;
-  --transition: all 0.2s ease;
   --radius-sm: 10px;
   --radius-md: 20px;
+  --transition: all 0.2s ease;
 }
 
 /* ==========================================================================
@@ -96,7 +95,7 @@ span {
 .textarea {
   border: 0;
   height: 40px;
-  min-width: 200px;
+  min-width: 160px;
   padding: 10px 15px;
   color: var(--branco);
   appearance: base-select;
@@ -117,7 +116,7 @@ span {
 }
 
 .textarea {
-  height: 300px;
+  height: 200px;
   resize: vertical;
 }
 
@@ -302,11 +301,11 @@ input[type="checkbox"] {
    ========================================================================== */
 .container {
   width: 90%;
-  margin: 0 auto;
   display: flex;
+  margin: 0 auto;
+  min-height: inherit;
   align-items: center;
   justify-content: space-between;
-  min-height: inherit;
 }
 
 .min_height {
@@ -315,21 +314,21 @@ input[type="checkbox"] {
 }
 
 .row {
-  display: flex;
-  flex-direction: row;
-  align-items: start;
-  justify-content: space-between;
   gap: 20px;
+  display: flex;
+  align-items: start;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .column,
 .nav,
 .ul,
 .campo_form {
+  gap: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 20px;
 }
 
 .nav {
@@ -344,4 +343,17 @@ input[type="checkbox"] {
 
 .full_width {
   width: 100%;
+}
+
+/* ==========================================================================
+   10. RESPONSIVIDADE (Media query)
+   ========================================================================== */
+@media (width <= 768px) {
+  .title {
+    text-align: center;
+  }
+
+  .to_column {
+    flex-direction: column;
+  }
 }

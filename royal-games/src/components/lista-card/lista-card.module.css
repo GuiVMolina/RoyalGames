@@ -1,17 +1,11 @@
 #lista_card {
   gap: 20px;
   display: grid;
-  max-width: 90vw;
+  max-width: 75vw;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
 @media (width <= 768px) {
-  #botoes {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-
   #lista_card {
     grid-template-columns: 1fr 1fr;
   }

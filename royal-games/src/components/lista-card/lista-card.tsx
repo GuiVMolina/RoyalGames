@@ -132,43 +132,53 @@ const ListaCard = () => {
 
   return (
     <>
-      <div className="row" id={styles.botoes}>
-        <input
-          className="input"
-          type="text"
-          placeholder="Busque seu jogo..."
-          value={pesquisa}
-          onChange={(e) => {
-            setPaginaAtual(1);
-            setPesquisa(e.target.value);
-          }}
-        />
-        <select
-          className="select"
-          value={ordem}
-          onChange={(e) => setOrdem(e.target.value)}
-        >
-          <option value="todos">Todos</option>
-          <option value="menor_preco">Menor Preço</option>
-          <option value="maior_preco">Maior Preço</option>
-        </select>
-        <select
-          className="select"
-          value={filtroClassificacao}
-          onChange={(e) => setFiltroClassificacao(e.target.value)}
-        >
-          <option value="0">Classificação (todas)</option>
-          <option value="10">10+</option>
-          <option value="12">12+</option>
-          <option value="14">14+</option>
-          <option value="16">16+</option>
-          <option value="18">18+</option>
-        </select>
-        {estaAutenticado && (
-          <Link className="btn" href="/jogo">
-            Adicionar
-          </Link>
-        )}
+      <div>
+        <h2 className="title glow_text">Catálogo de jogos</h2>
+        <hr className="line" />
+      </div>
+      <div className="row to_column">
+        <div className="row to_column full_width">
+          <input
+            className="input full_width"
+            type="text"
+            placeholder="Busque seu jogo..."
+            value={pesquisa}
+            onChange={(e) => {
+              setPaginaAtual(1);
+              setPesquisa(e.target.value);
+            }}
+          />
+          <select
+            className="select full_width"
+            value={filtroClassificacao}
+            onChange={(e) => setFiltroClassificacao(e.target.value)}
+          >
+            <option value="0">Classificação (todas)</option>
+            <option value="10">10+</option>
+            <option value="12">12+</option>
+            <option value="14">14+</option>
+            <option value="16">16+</option>
+            <option value="18">18+</option>
+          </select>
+        </div>
+
+        <div className="row full_width">
+          <select
+            className="select full_width"
+            value={ordem}
+            onChange={(e) => setOrdem(e.target.value)}
+          >
+            <option value="todos">Todos</option>
+            <option value="menor_preco">Menor Preço</option>
+            <option value="maior_preco">Maior Preço</option>
+          </select>
+
+          {estaAutenticado && (
+            <Link className="btn full_width" href="/jogo">
+              Adicionar
+            </Link>
+          )}
+        </div>
       </div>
 
       <article id={styles.lista_card}>
@@ -226,6 +236,16 @@ const ListaCard = () => {
           >
             &gt;
           </button>
+        </div>
+      )}
+      {estaAutenticado && (
+        <div className="row">
+          <Link className="btn" href="/genero">
+            Gênero
+          </Link>
+          <Link className="btn" href="/plataforma">
+            Plataforma
+          </Link>
         </div>
       )}
     </>

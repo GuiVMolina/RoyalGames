@@ -167,11 +167,11 @@ const Jogo = () => {
         <div className="container column">
           <div className="card">
             <div>
-              <h2>{telaEditar ? "Editar" : "Criar"} jogo</h2>
+              <h2 className="title glow_text">{telaEditar ? "Editar" : "Criar"} jogo</h2>
               <hr className="line" />
             </div>
             <form className="column" onSubmit={salvarJogo}>
-              <div className="row">
+              <div className="row to_column">
                 <div className="column">
                   <div className="campo_form">
                     <label>Nome</label>
@@ -315,7 +315,7 @@ const Jogo = () => {
                     />
                   </div>
                 </div>
-                <div>
+                <div className="full_width full_height">
                   <div className="campo_form">
                     <label>Descrição</label>
                     <textarea
@@ -337,10 +337,6 @@ const Jogo = () => {
                 </button>
               </div>
             </form>
-          </div>
-          <div>
-            <h2>Lista de jogos</h2>
-            <hr className="line" />
           </div>
           <ListaCard />
         </div>

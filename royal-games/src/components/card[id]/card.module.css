@@ -1,12 +1,12 @@
 #card_jogo {
-  padding: 0 0 20px;
   height: 400px;
+  padding: 0 0 15px;
   justify-content: space-between;
 }
 
 #card_img {
   width: 100%;
-  height: 50%;
+  height: 200px;
   object-fit: cover;
   object-position: top;
 }
@@ -23,6 +23,6 @@
 }
 
 #card_botoes_edit {
-  display: flex;
   gap: 10px;
+  display: flex;
 }

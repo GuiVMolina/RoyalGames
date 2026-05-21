@@ -62,7 +62,7 @@ const Detalhe = () => {
               <h2 className="title">Detalhes do jogo</h2>
               <hr className="line" />
             </div>
-            <div className="row">
+            <div className="row to_column">
               <div>
                 <img
                   src={jogo.imagemUrl}

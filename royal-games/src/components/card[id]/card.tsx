@@ -23,7 +23,7 @@ const Card = ({
     <div className="card" id={styles.card_jogo}>
       <img id={styles.card_img} src={img} alt={nome} />
       <div id={styles.card_texto}>
-        <h3 className="title">{nome}</h3>
+        <h4 className="title">{nome}</h4>
         <p className="p">{formatarPreco(preco)}</p>
       </div>
 
