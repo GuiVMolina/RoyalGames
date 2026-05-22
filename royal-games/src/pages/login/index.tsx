@@ -53,7 +53,7 @@ const Login = () => {
               required
             />
           </div>
-          <Button className="btn2" children="Entrar" />
+          <Button className="btn2" children="Entrar" type="submit"/>
         </form>
       </section>
     </>

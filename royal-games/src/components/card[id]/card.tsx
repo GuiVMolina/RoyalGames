@@ -12,14 +12,7 @@ type JogoProps = {
   estaLogado: boolean;
 };
 
-const Card = ({
-  jogoID,
-  nome,
-  preco,
-  img,
-  onDelete,
-  estaLogado,
-}: JogoProps) => {
+const Card = ({jogoID,nome,preco,img,onDelete,estaLogado,}: JogoProps) => {
   return (
     <div className="card" id={styles.card_jogo}>
       <img id={styles.card_img} src={img} alt={nome} />

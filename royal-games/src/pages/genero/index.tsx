@@ -61,7 +61,7 @@ const Genero = () => {
                 <Link href="/home" className="btn">
                   Cancelar
                 </Link>
-                <Button className="btn2" children="Salvar" />
+                <Button className="btn2" children="Salvar" type="submit"/>
               </div>
             </form>
           </div>

@@ -1,15 +1,15 @@
-import { ReactNode } from "react";
+import { ComponentPropsWithoutRef, ReactNode } from "react";
 
-type ButtonProps = {
+type ButtonProps = ComponentPropsWithoutRef<"button"> & {
   children: ReactNode;
-  className: string;
-  disabled?: boolean;
-  style?: React.CSSProperties;
-  onClick?: () => void;
 };
 
-const Botoes = ({ className, children, disabled, style }: ButtonProps) => {
-  return <button className={className}>{children}</button>;
+const Botoes = ({ className, children, onClick, ...props }: ButtonProps) => {
+  return (
+    <button className={className} onClick={onClick}>
+      {children}
+    </button>
+  );
 };
 
 export default Botoes;

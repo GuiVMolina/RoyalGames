@@ -338,6 +338,7 @@ const Jogo = () => {
                 <Button
                   className="btn2"
                   children={telaEditar ? "Salvar alterações" : "Cadastrar jogo"}
+                  type="submit"
                 />
               </div>
             </form>
